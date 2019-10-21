@@ -1,3 +1,13 @@
 table {
   width: 100%;
 }
+
+.operational {
+  color: #28a745;
+}
+.warning {
+  color: orange;
+}
+.alert {
+  color: red;
+}
