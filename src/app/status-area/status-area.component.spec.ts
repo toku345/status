@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Toku345StatusComponent } from './toku345-status.component';
+import { StatusAreaComponent } from './status-area.component';
 
-describe('Toku345StatusComponent', () => {
-  let component: Toku345StatusComponent;
-  let fixture: ComponentFixture<Toku345StatusComponent>;
+describe('StatusAreaComponent', () => {
+  let component: StatusAreaComponent;
+  let fixture: ComponentFixture<StatusAreaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Toku345StatusComponent ]
+      declarations: [ StatusAreaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Toku345StatusComponent);
+    fixture = TestBed.createComponent(StatusAreaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

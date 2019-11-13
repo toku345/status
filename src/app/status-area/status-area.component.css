@@ -1,0 +1,15 @@
+mat-card {
+  margin: 10px;
+}
+
+.good {
+  background-color: #388e3c;
+}
+
+.usually {
+  background-color: #ffe57f;
+}
+
+.bad {
+  background-color: #e53935;
+}

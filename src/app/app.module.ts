@@ -1,27 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppComponent } from './app.component';
-import { Toku345StatusComponent } from './toku345-status/toku345-status.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TopBarComponent } from "./top-bar/top-bar.component";
+import { StatusAreaComponent } from "./status-area/status-area.component";
 
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    Toku345StatusComponent,
-    TopBarComponent
-  ],
+  declarations: [AppComponent, TopBarComponent, StatusAreaComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatTableModule
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
