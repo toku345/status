@@ -1,10 +1,12 @@
 {
   "hosting": {
-    "public": "dist/toku345-status",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "*.ts",
+      "babylon.d.ts"
     ],
     "rewrites": [
       {
