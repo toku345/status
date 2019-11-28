@@ -4,10 +4,11 @@
 
 <style>
   h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
+    color: #9e01f7;
     font-weight: 100;
+    text-align: center;
+    margin: 0;
+    border-bottom: solid 1px;
   }
 </style>
 

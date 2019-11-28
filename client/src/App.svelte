@@ -18,7 +18,7 @@
   }
 </style>
 
+<Header />
 <main>
-  <Header />
   <Confetti />
 </main>
