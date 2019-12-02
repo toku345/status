@@ -2,6 +2,7 @@
   import Header from "./Header.svelte";
   import Whoami from "./Whoami.svelte";
   import Feeling from "./Feeling.svelte";
+  import RecentTweets from "./RecentTweets.svelte";
   // import Confetti from "./Confetti.svelte";
 </script>
 
@@ -45,6 +46,8 @@
   <div class="item feeling">
     <Feeling />
   </div>
-  <div class="item recent-tweets">Recent Tweets</div>
+  <div class="item recent-tweets">
+    <RecentTweets />
+  </div>
 </div>
 <!-- <Confetti /> -->
