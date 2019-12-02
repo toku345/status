@@ -3,13 +3,15 @@
 </script>
 
 <style>
-  h1 {
+  header {
     color: #9e01f7;
     font-weight: 100;
+    font-size: 2em;
     text-align: center;
     margin: 0;
+    padding-bottom: 10px;
     border-bottom: solid 1px;
   }
 </style>
 
-<h1>toku345 status</h1>
+<header>toku345 status</header>
