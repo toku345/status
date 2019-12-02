@@ -1,5 +1,6 @@
 <script>
   import Header from "./Header.svelte";
+  import Whoami from "./Whoami.svelte";
   // import Confetti from "./Confetti.svelte";
 </script>
 
@@ -17,22 +18,9 @@
   }
 
   .item {
-    background-color: #1eaafc;
-    background-image: linear-gradient(
-      130deg,
-      #6c52d9 0%,
-      #1eaafc 85%,
-      #3edfd7 100%
-    );
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    color: #fff;
     border-radius: 4px;
     border: 6px solid #171717;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
   }
 
   .whoami {
@@ -50,7 +38,9 @@
 
 <Header />
 <div class="container">
-  <div class="item whoami">whoami</div>
+  <div class="item whoami">
+    <Whoami />
+  </div>
   <div class="item feeling">Feeling</div>
   <div class="item recent-tweets">Recent Tweets</div>
 </div>
