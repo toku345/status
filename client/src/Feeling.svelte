@@ -4,9 +4,19 @@
   import { Engine } from "@babylonjs/core/Engines/engine";
   import { Scene } from "@babylonjs/core/scene";
   import { Vector3 } from "@babylonjs/core/Maths/math";
-  import { FreeCamera } from "@babylonjs/core/Cameras/freeCamera";
-  import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
+
+  /* import { FreeCamera } from "@babylonjs/core/Cameras/freeCamera";*/
+  import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcrotatecamera";
+
+  /* import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";*/
+  import { PointLight } from "@babylonjs/core/Lights/pointlight";
+
   import { Mesh } from "@babylonjs/core/Meshes/mesh";
+
+  import { ParticleSystem } from "@babylonjs/core/particles/particlesystem";
+  import { SphereParticleEmitter } from "@babylonjs/core/particles/EmitterTypes/sphereParticleEmitter";
+
+  import { Texture } from "@babylonjs/core/materials/textures";
 
   import { GridMaterial } from "@babylonjs/materials/grid";
 
@@ -14,17 +24,79 @@
   import "@babylonjs/core/Meshes/meshBuilder";
 
   onMount(() => {
-    // Get the canvas element from the DOM.
     const canvas = document.getElementById("renderCanvas");
-
-    // Associate a Babylon Engine to it.
     const engine = new Engine(canvas);
 
-    // Create our first scene.
-    var scene = new Scene(engine);
+    let scene = new Scene(engine);
 
-    // This creates and positions a free camera (non-mesh)
-    var camera = new FreeCamera("camera1", new Vector3(0, 5, -10), scene);
+    let light0 = new PointLight("Omni", new Vector3(0, 2, 8), scene);
+    let camera = new ArcRotateCamera(
+      "ArcRotateCamera",
+      1,
+      0.8,
+      20,
+      new Vector3(0, 0, 0),
+      scene
+    );
+
+    // Fountain object
+    let fountain = Mesh.CreateBox("foutain", 0.01, scene);
+
+    // Create a particle system
+    let particleSystem = new ParticleSystem("particles", 2000, scene);
+
+    //Texture of each particle
+    particleSystem.particleTexture = new BABYLON.Texture(
+      "/textures/flare.png",
+      scene
+    );
+
+    // Where the particles come from
+    particleSystem.emitter = fountain; // the starting object, the emitter
+    let emitterType = new SphereParticleEmitterw();
+    emitterType.radius = 5;
+    emitterType.radiusRange = 0;
+
+    particleSystem.particleEmitterType = emitterType;
+
+    // Colors of all particles
+    particleSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+    particleSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+    particleSystem.colorDead = new BABYLON.Color4(0, 0, 0.2, 0.0);
+
+    // Size of each particle (random between...
+    particleSystem.minSize = 0.1;
+    particleSystem.maxSize = 0.5;
+
+    // Life time of each particle (random between...
+    particleSystem.minLifeTime = 0.3;
+    particleSystem.maxLifeTime = 1.5;
+
+    // Emission rate
+    particleSystem.emitRate = 1500;
+
+    // Blend mode : BLENDMODE_ONEONE, or BLENDMODE_STANDARD
+    particleSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+
+    // Set the gravity of all particles
+    particleSystem.gravity = new BABYLON.Vector3(0, 0, 0);
+
+    // Angular speed, in radians
+    particleSystem.minAngularSpeed = 0;
+    particleSystem.maxAngularSpeed = Math.PI;
+
+    // Speed
+    particleSystem.minEmitPower = 1;
+    particleSystem.maxEmitPower = 1;
+    particleSystem.updateSpeed = 0.005;
+
+    particleSystem.addVelocityGradient(0, 3, 5);
+    particleSystem.addVelocityGradient(1.0, -5, -10);
+
+    // Start the particle system
+    particleSystem.start();
+
+    /* ------------------------- */
 
     // This targets the camera to scene origin
     camera.setTarget(Vector3.Zero());
