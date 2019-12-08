@@ -1,16 +1,99 @@
+<script>
+  import { onMount } from "svelte";
+
+  import Chart from "chart.js";
+
+  let recentTweets = [
+    {
+      tweet: "さぁー、やるぞー🔥",
+      score: 0.6,
+      magnitude: 0.6,
+      postedAt: "2019/12/09 06:21:10"
+    },
+    {
+      tweet: "tableのスタイリング、難しいな...",
+      score: -0.1,
+      magnitude: 0.1,
+      postedAt: "2019/12/09 06:17:10"
+    },
+    {
+      tweet:
+        "とりあえず最近のつぶやきをテーブルで表示してみようって思ってたけど、これ表示するとなんでいいんだっけか？",
+      score: 0.1,
+      magnitude: 0.1,
+      postedAt: "2019/12/09 06:17:01"
+    }
+  ].reverse();
+
+  onMount(() => {
+    let ctx = document.getElementById("tweetsChart");
+
+    let labels = recentTweets.map(recentTweet => {
+      return recentTweet.postedAt;
+    });
+
+    let data = recentTweets.map(recentTweet => {
+      return recentTweet.score;
+    });
+
+    let config = {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "",
+            data: data,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: ""
+        },
+        tooltips: {
+          mode: "index",
+          intersect: false
+        },
+        hover: {
+          mode: "nearest",
+          intersect: true
+        },
+        scales: {
+          xAxes: [
+            {
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: "Posted at"
+              }
+            }
+          ],
+          yAxes: [
+            {
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: "Post's sentiment score"
+              }
+            }
+          ]
+        }
+      }
+    };
+
+    let myChart = new Chart(ctx, config);
+  });
+</script>
+
 <style>
-  .whoami {
-    height: 100%;
-    width: 100%;
-    background-color: #1eaafc;
-    background-image: linear-gradient(203deg, #3edfd7 0%, #29a49d 90%);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bold;
+  .tweets-chart {
+    width: 80%;
+    height: 80%;
   }
 </style>
 
-<div class="whoami">RECENT TWEETS</div>
+<canvas id="tweetsChart" class="tweets-chart" />
