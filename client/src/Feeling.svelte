@@ -17,8 +17,7 @@
   import { Texture } from "@babylonjs/core/materials/textures";
   import { GridMaterial } from "@babylonjs/materials/grid";
 
-  // StandardMaterial needs to be imported before as it contains a side-effect required by your code.
-  import { StandardMaterial } from "@babylonjs/materials";
+  import { StandardMaterial } from "@babylonjs/core/materials/StandardMaterial";
 
   // Required side effects to populate the Create methods on the mesh class. Without this, the bundle would be smaller but the createXXX methods from mesh would not be accessible.
   import "@babylonjs/core/Meshes/meshBuilder";
