@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from "svelte";
+
   import Header from "./Header.svelte";
   import Whoami from "./Whoami.svelte";
   import Feeling from "./Feeling.svelte";
@@ -6,6 +8,11 @@
   // import Confetti from "./Confetti.svelte";
 
   import { recentTweets } from "./stores.js";
+
+  onMount(async () => {
+    const res = await fetch("/dummy_recent_tweets.json");
+    recentTweets.set(await res.json());
+  });
 </script>
 
 <style>

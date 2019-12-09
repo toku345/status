@@ -4,18 +4,8 @@
   import Chart from "chart.js";
   import { recentTweets } from "./stores.js";
 
-  onMount(() => {
-    let ctx = document.getElementById("tweetsChart");
-
-    let labels = $recentTweets.map(recentTweet => {
-      return recentTweet.postedAt;
-    });
-
-    let data = $recentTweets.map(recentTweet => {
-      return recentTweet.score;
-    });
-
-    let config = {
+  function makeConfig(labels, data) {
+    return {
       type: "line",
       data: {
         labels: labels,
@@ -63,8 +53,28 @@
         }
       }
     };
+  }
 
-    let myChart = new Chart(ctx, config);
+  onMount(() => {
+    const ctx = document.getElementById("tweetsChart");
+    let myChart;
+
+    recentTweets.subscribe(recentTweets => {
+      const labels = recentTweets.map(recentTweet => {
+        return recentTweet.postedAt;
+      });
+
+      const data = recentTweets.map(recentTweet => {
+        return recentTweet.score;
+      });
+
+      const config = makeConfig(labels, data);
+      const myChart = new Chart(ctx, config);
+    });
+
+    return () => {
+      myChart.destroy();
+    };
   });
 </script>
 
