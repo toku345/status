@@ -4,6 +4,8 @@
   import Feeling from "./Feeling.svelte";
   import RecentTweets from "./RecentTweets.svelte";
   // import Confetti from "./Confetti.svelte";
+
+  import { recentTweets } from "./stores.js";
 </script>
 
 <style>
