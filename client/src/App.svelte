@@ -9,9 +9,29 @@
 
   import { recentTweets } from "./stores.js";
 
+  import firebase from "@firebase/app";
+  import "@firebase/firestore";
+
   onMount(async () => {
-    const res = await fetch("/dummy_recent_tweets.json");
-    recentTweets.set(await res.json());
+    const res = await fetch("/firebaseconfig.json");
+    const firebaseConfig = await res.json();
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    let scores = [];
+    db.collection("sentiment-scores")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          scores.push(doc.data());
+          console.debug(typeof doc.data());
+        });
+        recentTweets.set(scores);
+      })
+      .catch(error => {
+        console.error("Error: ", error);
+      });
   });
 </script>
 
