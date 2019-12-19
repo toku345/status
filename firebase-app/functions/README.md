@@ -2,7 +2,7 @@
 
 ``` console
 # Setup
-$ firebase functions:config:set webhook.target_User_Id="User ID"
+$ firebase functions:config:set webhook.target_user_id="User ID"
 
 
 # Check current configuration
