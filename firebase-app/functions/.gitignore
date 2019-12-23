@@ -1,11 +1,5 @@
-## Compiled JavaScript files
-**/*.js
-**/*.js.map
-
-# Typescript v1 declaration files
-typings/
-
 node_modules/
+
 status-toku345.json
 status-toku345*.json
 .envrc
