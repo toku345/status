@@ -1,4 +1,6 @@
 const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+admin.initializeApp(functions.config().firebase);
 
 exports.webhook = functions
   .region("asia-northeast1")
@@ -11,9 +13,10 @@ exports.webhook = functions
       if (payload.event && payload.event.type === "message") {
         if (payload.event.user === functions.config().webhook.target_user_id) {
           console.log(payload.event);
-          await analyzeSentimentOfText(payload.event.text);
+          const sentiment = await analyzeSentimentOfText(payload.event.text);
+          saveSentimentScore(payload.event.text, sentiment, payload.event.ts);
         } else {
-          console.log("NON TARGET USER: ", payload.event.user);
+          // Do nothing
         }
       }
       response.status(200).send("OK");
@@ -34,4 +37,15 @@ async function analyzeSentimentOfText(text) {
   console.log(`Text: ${text}`);
   console.log(`Sentiment score: ${sentiment.score}`);
   console.log(`Sentiment magnitude: ${sentiment.magnitude}`);
+  return sentiment;
+}
+
+function saveSentimentScore(text, sentiment, ts) {
+  let db = admin.firestore();
+  db.collection("sentiment-scores").add({
+    tweet: text,
+    score: sentiment.score,
+    magnitude: sentiment.magnitude,
+    postedAt: ts
+  });
 }
