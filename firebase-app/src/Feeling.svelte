@@ -28,7 +28,7 @@
 </style>
 
 <div class="feeling">
-  {#if latestScore}
+  {#if latestScore !== null}
     {#if latestScore < -0.25}
       smoke
     {:else if latestScore < 0.25}
