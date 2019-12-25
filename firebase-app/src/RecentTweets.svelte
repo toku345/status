@@ -4,6 +4,8 @@
   import Chart from "chart.js";
   import { recentTweets } from "./stores.js";
 
+  import moment from "moment";
+
   function makeConfig(labels, data) {
     return {
       type: "line",
@@ -34,7 +36,10 @@
         scales: {
           xAxes: [
             {
-              display: true,
+              type: "time",
+              time: {
+                unit: "hour"
+              },
               scaleLabel: {
                 display: true,
                 labelString: "Posted at"
@@ -61,7 +66,7 @@
 
     recentTweets.subscribe(recentTweets => {
       const labels = recentTweets.map(recentTweet => {
-        return recentTweet.postedAt;
+        return moment.unix(recentTweet.postedAt).format("YYYY-MM-DD HH:mm:ssZ");
       });
 
       const data = recentTweets.map(recentTweet => {

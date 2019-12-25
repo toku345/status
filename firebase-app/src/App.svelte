@@ -21,11 +21,12 @@
 
     let scores = [];
     db.collection("sentiment-scores")
+      .orderBy("postedAt", "asc")
+      .limit(50)
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           scores.push(doc.data());
-          console.debug(typeof doc.data());
         });
         recentTweets.set(scores);
       })
