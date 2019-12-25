@@ -21,7 +21,7 @@
 
     let scores = [];
     db.collection("sentiment-scores")
-      .orderBy("postedAt", "asc")
+      .orderBy("postedAt", "desc")
       .limit(50)
       .get()
       .then(querySnapshot => {
