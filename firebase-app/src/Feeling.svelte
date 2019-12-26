@@ -3,18 +3,21 @@
 
   import Flare from "./Feeling/Flare.svelte";
   import Pop from "./Feeling/Pop.svelte";
+  import Smoke from "./Feeling/Smoke.svelte";
+
   import { recentTweets } from "./stores.js";
 
-  let latestScore = null;
+  /* let latestScore = null;*/
+  let latestScore = -0.26;
 
-  onMount(() => {
-    recentTweets.subscribe(tweets => {
-      if (tweets.length) {
-        let latestTweet = tweets[0];
-        latestScore = latestTweet.score;
-      }
-    });
-  });
+  /* onMount(() => {
+   *   recentTweets.subscribe(tweets => {
+   *     if (tweets.length) {
+   *       let latestTweet = tweets[0];
+   *       latestScore = latestTweet.score;
+   *     }
+   *   });
+   * });*/
 </script>
 
 <style>
@@ -30,7 +33,7 @@
 <div class="feeling">
   {#if latestScore !== null}
     {#if latestScore < -0.25}
-      smoke
+      <Smoke />
     {:else if latestScore < 0.25}
       <Pop />
     {:else}
