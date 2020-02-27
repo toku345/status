@@ -7,7 +7,7 @@
     "start": "sirv public"
   },
   "devDependencies": {
-    "@babylonjs/core": "^4.0.3",
+    "@babylonjs/core": "^4.1.0",
     "@babylonjs/materials": "^4.0.3",
     "firebase-tools": "^7.12.1",
     "rollup": "^1.31.0",
