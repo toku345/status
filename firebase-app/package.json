@@ -16,7 +16,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.2.0",
-    "svelte": "^3.16.0"
+    "svelte": "^3.23.2"
   },
   "dependencies": {
     "@firebase/firestore": "^1.10.1",
